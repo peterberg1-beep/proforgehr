@@ -19,7 +19,7 @@ function App() {
       {/* Hero */}
       <div className="max-w-5xl mx-auto px-6 py-24 text-center">
         <h1 className="text-6xl font-bold text-gray-900 leading-tight mb-8">
-          Intelligent<br />Workforce Management
+          Intelligent Workforce Management
         </h1>
         <p className="text-2xl text-gray-600 mb-12">Built for your business. Choose the modules you need.</p>
         
