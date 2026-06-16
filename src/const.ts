@@ -1,36 +1,22 @@
-export { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
+// Simple constants for current deployment
+export const APP_TITLE = "ProForgeHR";
 
-export const APP_TITLE = import.meta.env.VITE_APP_TITLE || "ProForgeHR";
+// Logo placeholders (we can replace with real images later)
+export const APP_LOGO = "https://via.placeholder.com/180x50/006AA7/FFFFFF?text=ProForgeHR";
+export const APP_LOGO_HERO = "https://via.placeholder.com/600x350/006AA7/FFFFFF?text=ProForgeHR+Hero";
+export const APP_LOGO_HORIZONTAL = APP_LOGO;
+export const APP_LOGO_DARK = APP_LOGO;
+export const APP_LOGO_VERTICAL = APP_LOGO;
+export const APP_LOGO_FULL = APP_LOGO;
 
-// ─── ProForgeHR Logo Library ───────────────────────────────────────────────
-// 1. Icon-only (three metallic coins) — nav bar, favicon, app icon, social media
-export const APP_LOGO = "/manus-storage/proforgehr-logo-icon_376b6700.png";
-
-// 2. Horizontal wordmark (icon + text, light bg) — website header, email headers
-export const APP_LOGO_HORIZONTAL = "/manus-storage/proforgehr-logo-horizontal_36112d53.png";
-
-// 3. Dark mode wordmark (icon + text, dark bg) — dark backgrounds, dark theme sections
-export const APP_LOGO_DARK = "/manus-storage/proforgehr-logo-dark_efb169be.png";
-
-// 4. Vertical / stacked (icon above text) — mobile, brochures, presentations
-export const APP_LOGO_VERTICAL = "/manus-storage/proforgehr-logo-vertical_5b102a85.png";
-
-// 5. Original metallic wordmark (legacy) — kept for reference
-export const APP_LOGO_FULL = "/manus-storage/proforgehr-logo-metallic_e47baf43.png";
-
-// 6. Full vertical logo (three circles + ProForgeHR wordmark + tagline) — hero/landing page
-export const APP_LOGO_HERO = "/manus-storage/proforgehr-logo-full-vertical_e9a6d545.png";
-
-// ProForgeHR Brand Colours (South African + Swedish flag heritage)
+// Brand colours
 export const BRAND = {
-  blue: "#006AA7",    // Swedish Steel Blue — People
-  green: "#007A4D",   // SA Emerald Green — Process
-  gold: "#FFB81C",    // SA Gold — Performance
-  navy: "#0F172A",    // Deep Navy — text/headings
-  gray: "#6B7280",    // Slate Gray — secondary text
-  bg: "#F8FAFC",      // Light Gray — backgrounds
+  blue: "#006AA7",
+  green: "#007A4D",
+  gold: "#FFB81C",
+  navy: "#0F172A",
+  gray: "#6B7280",
+  bg: "#F8FAFC",
 } as const;
 
-// Custom branded login — always routes to ProForgeHR's own login page.
-// No external OAuth redirect; keeps the Manus platform invisible to clients.
 export const getLoginUrl = () => "/login";
