@@ -60,7 +60,7 @@ const Dashboard = () => (
         </button>
       </div>
       <p className="text-gray-600 text-lg">You are now securely in <strong>GD Trade Group</strong> mode.</p>
-      <p className="mt-4 text-sm text-gray-500">Only users belonging to this organisation/group can see data here.</p>
+      <p className="mt-4 text-sm text-gray-500">This area is protected. Only users belonging to this organisation/group can see data here.</p>
     </div>
   </div>
 );
