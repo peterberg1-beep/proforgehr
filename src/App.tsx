@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Switch } from "wouter";
 import Landing from './pages/Landing';
-import { isInOrgMode, clearOrgSession } from './lib/orgSession';
+import { clearOrgSession } from './lib/orgSession';
 
-// Simple placeholders
+// Demo Pages
 const Login = () => (
   <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-    <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-sm">
-      <h1 className="text-3xl font-bold mb-8 text-center">Sign In to ProForgeHR</h1>
+    <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-sm text-center">
+      <h1 className="text-3xl font-bold mb-8">Sign In to ProForgeHR</h1>
       <button 
         onClick={() => window.location.href = "/select-organization"}
         className="w-full bg-[#006AA7] hover:bg-[#005589] text-white py-4 rounded-2xl font-medium text-lg"
@@ -22,11 +22,13 @@ const Login = () => (
 const SelectOrganization = () => (
   <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
     <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-sm text-center">
-      <h2 className="text-2xl font-bold mb-6">Select Organisation</h2>
+      <h2 className="text-2xl font-bold mb-6">Select Organisation or Group</h2>
       <button 
         onClick={() => {
-          // Simulate selecting GD Trade Group
-          localStorage.setItem('selectedOrganization', JSON.stringify({ id: "gd-trade", name: "GD Trade Group" }));
+          localStorage.setItem('selectedOrganization', JSON.stringify({ 
+            id: "gd-trade-group", 
+            name: "GD Trade Group" 
+          }));
           window.location.href = "/dashboard";
         }}
         className="w-full bg-[#006AA7] hover:bg-[#005589] text-white py-4 rounded-2xl font-medium mb-4"
@@ -58,12 +60,15 @@ const Dashboard = () => (
           Exit Organisation
         </button>
       </div>
-      <p className="text-gray-600">This is a secured area. Only users belonging to the selected organisation can see data here.</p>
+      <div className="bg-white p-8 rounded-3xl shadow-sm">
+        <p className="text-gray-600">You are now in <strong>GD Trade Group</strong> mode.</p>
+        <p className="mt-4 text-sm text-gray-500">This is a secured area. Organisation rules are now active.</p>
+      </div>
     </div>
   </div>
 );
 
-const NotFound = () => <div className="p-20 text-center">404 - Page Not Found</div>;
+const NotFound = () => <div className="p-20 text-center text-xl">404 - Page Not Found</div>;
 
 function App() {
   return (
