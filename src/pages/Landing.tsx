@@ -235,8 +235,9 @@ export default function Landing() {
   const roi = ((totalAnnualSaving - estimatedPlatformCost) / estimatedPlatformCost) * 100;
   const paybackMonths = Math.ceil(estimatedPlatformCost / (totalAnnualSaving / 12));
 
-  return (
-    <div className="min-h-screen bg-white">
+return (
+  <div className="min-h-screen bg-white">
+    <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
       {/* Navigation */}
       <nav className="border-b border-gray-100 bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -261,7 +262,7 @@ export default function Landing() {
           </div>
         </div>
       </nav>
-
+    </div>
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="bg-gradient-to-br from-[#F8FAFC] via-white to-blue-50 py-20 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
