@@ -1040,5 +1040,3 @@ export default function Landing() {
     </div>
   );
 }
-// Force full width and better base styling
-const containerClass = "max-w-7xl mx-auto px-6 lg:px-8";
