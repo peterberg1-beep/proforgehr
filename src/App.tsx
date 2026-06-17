@@ -1,29 +1,27 @@
 import React from 'react';
 import { Route, Switch } from "wouter";
 import Landing from './pages/Landing';
-import { clearOrgSession } from './lib/orgSession';
 
-// Use your real files if possible, fallback to simple demo
-const Login = () => <div>Login Page - Loading your original...</div>; // We will replace with your real one later
-const SelectOrganization = () => <div>Select Organisation - Loading your original...</div>;
+// Try to import your real files (with fallbacks)
+let Login;
+try {
+  Login = require('./pages/Login').default;
+} catch {
+  Login = () => <div className="p-20 text-center">Login Page</div>;
+}
+
+let SelectOrganization;
+try {
+  SelectOrganization = require('./pages/SelectOrganization').default;
+} catch {
+  SelectOrganization = () => <div className="p-20 text-center">Select Organisation</div>;
+}
 
 const Dashboard = () => (
   <div className="min-h-screen bg-gray-50 p-8">
-    <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm p-10">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">GD Trade Group Dashboard</h1>
-        <button 
-          onClick={() => {
-            clearOrgSession();
-            window.location.href = "/select-organization";
-          }}
-          className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-medium"
-        >
-          Exit Organisation
-        </button>
-      </div>
-      <p className="text-lg text-gray-600">You are now in <strong>GD Trade Group</strong> mode.</p>
-      <p className="mt-4 text-gray-500">This is a protected area. Only users in the selected organisation/group can see data here.</p>
+    <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow p-10">
+      <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+      <p>This is the secured area.</p>
     </div>
   </div>
 );
@@ -35,7 +33,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/select-organization" component={SelectOrganization} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route component={() => <div className="p-20 text-center text-xl">404 - Page Not Found</div>} />
+      <Route component={() => <div>404</div>} />
     </Switch>
   );
 }
