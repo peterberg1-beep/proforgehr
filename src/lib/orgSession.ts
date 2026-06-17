@@ -1,18 +1,47 @@
-const ORG_SESSION_KEY = 'selectedOrganization';
+/**
+ * Org session utilities — manages the selectedOrganizationId in both
+ * localStorage (for client-side reads) and as a cookie (for server reads).
+ *
+ * Uses SameSite=None; Secure on HTTPS so the cookie is sent in the Manus
+ * preview environment and any cross-origin deployment.
+ */
 
-export const setOrgSession = (orgId: string, orgName: string) => {
-  localStorage.setItem(ORG_SESSION_KEY, JSON.stringify({ id: orgId, name: orgName }));
-};
+function buildCookieString(orgId: string): string {
+  const isSecure = window.location.protocol === "https:";
+  const maxAge = 30 * 24 * 60 * 60; // 30 days
+  let cookie = `selectedOrganizationId=${encodeURIComponent(orgId)}; path=/; max-age=${maxAge}`;
+  if (isSecure) {
+    cookie += "; SameSite=None; Secure";
+  } else {
+    cookie += "; SameSite=Lax";
+  }
+  return cookie;
+}
 
-export const getOrgSession = () => {
-  const data = localStorage.getItem(ORG_SESSION_KEY);
-  return data ? JSON.parse(data) : null;
-};
+/** Set the active organization ID in localStorage + cookie */
+export function setOrgSession(orgId: string): void {
+  localStorage.setItem("selectedOrganizationId", orgId);
+  sessionStorage.setItem("selectedOrganizationId", orgId);
+  document.cookie = buildCookieString(orgId);
+}
 
-export const clearOrgSession = () => {
-  localStorage.removeItem(ORG_SESSION_KEY);
-};
+/** Clear the active organization session */
+export function clearOrgSession(): void {
+  localStorage.removeItem("selectedOrganizationId");
+  sessionStorage.removeItem("selectedOrganizationId");
+  // Expire the cookie
+  const isSecure = window.location.protocol === "https:";
+  let cookie = "selectedOrganizationId=; path=/; max-age=0";
+  if (isSecure) {
+    cookie += "; SameSite=None; Secure";
+  } else {
+    cookie += "; SameSite=Lax";
+  }
+  document.cookie = cookie;
+}
 
-export const isInOrgMode = () => {
-  return getOrgSession() !== null;
-};
+/** Get the active organization ID (from localStorage) */
+export function getOrgSession(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem("selectedOrganizationId");
+}
