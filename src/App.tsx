@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { Button } from './components/ui/button';
-import { APP_LOGO, APP_LOGO_HERO, BRAND } from './const';
+import React from 'react';
+import { APP_LOGO, APP_LOGO_HERO } from './const';
 
 function App() {
-  const [roiEmployees, setRoiEmployees] = useState(50);
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -25,12 +22,12 @@ function App() {
         </div>
       </div>
 
-      {/* Hero */}
-      <div className="max-w-5xl mx-auto px-6 py-24 text-center">
+      {/* Hero with Logo */}
+      <div className="max-w-5xl mx-auto px-6 py-20 text-center">
         <img 
           src={APP_LOGO_HERO} 
           alt="ProForgeHR Hero" 
-          className="mx-auto mb-12 max-h-[280px] object-contain" 
+          className="mx-auto mb-12 max-h-[320px] object-contain" 
         />
         
         <h1 className="text-6xl font-bold text-gray-900 leading-tight mb-8">
@@ -38,13 +35,13 @@ function App() {
         </h1>
         <p className="text-2xl text-gray-600 mb-12">Built for your business. Choose the modules you need.</p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <Button asChild size="lg">
-            <a href="/login">Sign In</a>
-          </Button>
-          <Button variant="outline" size="lg">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/login" className="bg-[#006AA7] text-white px-10 py-4 rounded-2xl text-lg font-medium hover:bg-[#005589]">
+            Sign In
+          </a>
+          <a href="#" className="border border-gray-300 px-10 py-4 rounded-2xl text-lg font-medium hover:bg-gray-50">
             Book Consultation
-          </Button>
+          </a>
         </div>
       </div>
 
