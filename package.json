@@ -11,7 +11,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "wouter": "^3.3.5",
-    "lucide-react": "^0.441.0"
+    "lucide-react": "^0.441.0",
     "sonner": "^1.5.0",
   },
   "devDependencies": {
