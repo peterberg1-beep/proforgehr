@@ -1,9 +1,9 @@
-import React from 'react';
-import { Route, Switch } from "wouter";
+import React, { useState } from 'react';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import SelectOrganization from './pages/SelectOrganization';
 
+// Simple Dashboard with Exit button
 const Dashboard = () => (
   <div className="min-h-screen bg-gray-50 p-8">
     <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm p-10">
@@ -12,7 +12,7 @@ const Dashboard = () => (
         <button 
           onClick={() => {
             localStorage.removeItem('selectedOrganization');
-            window.location.href = "/select-organization";
+            window.location.reload(); // Refresh to go back to Select Organisation
           }}
           className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-medium"
         >
@@ -26,15 +26,31 @@ const Dashboard = () => (
 );
 
 function App() {
-  return (
-    <Switch>
-      <Route path="/" component={Landing} />
-      <Route path="/login" component={Login} />
-      <Route path="/select-organization" component={SelectOrganization} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route component={() => <div className="p-20 text-center text-xl">404 - Page Not Found</div>} />
-    </Switch>
-  );
+  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'select' | 'dashboard'>('landing');
+
+  // Simple navigation functions
+  const goTo = (page: 'landing' | 'login' | 'select' | 'dashboard') => {
+    setCurrentPage(page);
+  };
+
+  // Render different pages based on state
+  if (currentPage === 'landing') {
+    return <Landing goToLogin={() => goTo('login')} />;
+  }
+
+  if (currentPage === 'login') {
+    return <Login goToSelect={() => goTo('select')} />;
+  }
+
+  if (currentPage === 'select') {
+    return <SelectOrganization goToDashboard={() => goTo('dashboard')} />;
+  }
+
+  if (currentPage === 'dashboard') {
+    return <Dashboard />;
+  }
+
+  return <div>404</div>;
 }
 
 export default App;
