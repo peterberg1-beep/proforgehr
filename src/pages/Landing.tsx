@@ -252,10 +252,10 @@ return (
               </div>
             </a>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" onClick={() => navigate("/login")} className="text-[#0F172A] hover:text-[#006AA7]">
+              <Button variant="ghost" onClick={() => window.location.href = "/login"} className="text-[#0F172A] hover:text-[#006AA7]">
                 Sign In
               </Button>
-              <Button onClick={() => navigate("/register")} className="bg-[#006AA7] hover:bg-[#005a8e] text-white">
+              <Button onClick={() => window.location.href = "/register"} className="bg-[#006AA7] hover:bg-[#005a8e] text-white">
                 Book a Consultation
               </Button>
             </div>
@@ -289,10 +289,10 @@ return (
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button onClick={() => navigate("/discovery")} size="lg" className="bg-[#006AA7] hover:bg-[#005a8e] text-white gap-2 px-8">
+                <Button onClick={() => window.location.href = "/discovery"} size="lg" className="bg-[#006AA7] hover:bg-[#005a8e] text-white gap-2 px-8">
                   <Sparkles className="h-5 w-5" /> Start Your Discovery
                 </Button>
-                <Button size="lg" variant="outline" className="border-[#006AA7] text-[#006AA7] hover:bg-blue-50 px-8" onClick={() => navigate("/register")}>
+                <Button size="lg" variant="outline" className="border-[#006AA7] text-[#006AA7] hover:bg-blue-50 px-8" onClick={() => window.location.href = "/register"}>
                   Book a Consultation
                 </Button>
               </div>
@@ -788,7 +788,7 @@ return (
                   </li>
                 ))}
               </ul>
-              <Button onClick={() => navigate("/login")} variant="outline" className="w-full border-[#006AA7] text-[#006AA7] hover:bg-blue-50 gap-2">
+              <Button onClick={() => window.location.href = "/login"} variant="outline" className="w-full border-[#006AA7] text-[#006AA7] hover:bg-blue-50 gap-2">
                 View the Demo <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
@@ -818,7 +818,7 @@ return (
                   </li>
                 ))}
               </ul>
-              <Button onClick={() => navigate("/register")} className="w-full bg-[#FFB81C] text-[#0F172A] hover:bg-[#e6a519] font-semibold gap-2">
+              <Button onClick={() => window.location.href = "/register"} className="w-full bg-[#FFB81C] text-[#0F172A] hover:bg-[#e6a519] font-semibold gap-2">
                 Book a Consultation <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
@@ -1005,10 +1005,10 @@ return (
             Book a consultation with a ProForgeHR specialist. We will run the discovery process, match your organisation to the right modules, and produce a Module Implementation Plan — before any commitment is made.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={() => navigate("/register")} size="lg" className="bg-[#FFB81C] hover:bg-[#e6a519] text-[#0F172A] font-semibold gap-2 px-8">
+            <Button onClick={() => window.location.href = "/register"} size="lg" className="bg-[#FFB81C] hover:bg-[#e6a519] text-[#0F172A] font-semibold gap-2 px-8">
               Book a Consultation <ArrowRight className="h-5 w-5" />
             </Button>
-            <Button onClick={() => navigate("/login")} size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8">
+            <Button onClick={() => window.location.href = "/login"} size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8">
               View the Demo
             </Button>
           </div>
