@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { APP_LOGO_HORIZONTAL } from "@/const";
 
-export default function Login() {
+export default function Login({ goToSelect }: { goToSelect: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -13,16 +13,15 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Demo mode - simulate login
+    // Demo login
     setTimeout(() => {
       setIsLoading(false);
-      window.location.href = "/select-organization";
+      goToSelect(); // Use the function from App.tsx
     }, 600);
   };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
-      {/* Top bar */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <a href="/" className="flex items-center gap-3 no-underline">
           {APP_LOGO_HORIZONTAL ? (
@@ -33,7 +32,6 @@ export default function Login() {
         </a>
       </div>
 
-      {/* Main content */}
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-10">
