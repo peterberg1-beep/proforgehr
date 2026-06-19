@@ -9,13 +9,13 @@ type Organisation = {
 };
 
 // Initial demo data
-const // testinitialOrgs: Organisation[] = [
+const initialOrgs: Organisation[] = [
   { id: "acme", name: "ACME Construction" },
   { id: "bedrock-const", name: "Bedrock Construction", groupId: "gd-trade", groupName: "GD Trade Group" },
   { id: "bedrock-log", name: "Bedrock Logistics", groupId: "gd-trade", groupName: "GD Trade Group" },
   { id: "sunrise", name: "Sunrise Mining" },
 ];
-// test
+
 export default function SelectOrganization({ 
   onSelect, 
   onBack 
