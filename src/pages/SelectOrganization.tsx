@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 
-// Simple data structure for demo
 type Organisation = {
   id: string;
   name: string;
@@ -9,11 +8,12 @@ type Organisation = {
   groupName?: string;
 };
 
-const organisations: Organisation[] = [
-  { id: "acme", name: "ACME Construction" }, // Standalone
+// Initial demo data
+const initialOrgs: Organisation[] = [
+  { id: "acme", name: "ACME Construction" },
   { id: "bedrock-const", name: "Bedrock Construction", groupId: "gd-trade", groupName: "GD Trade Group" },
   { id: "bedrock-log", name: "Bedrock Logistics", groupId: "gd-trade", groupName: "GD Trade Group" },
-  { id: "sunrise", name: "Sunrise Mining" }, // Another standalone
+  { id: "sunrise", name: "Sunrise Mining" },
 ];
 
 export default function SelectOrganization({ 
@@ -24,6 +24,11 @@ export default function SelectOrganization({
   onBack: () => void;
 }) {
   
+  const [organisations, setOrganisations] = useState<Organisation[]>(initialOrgs);
+  const [showCreate, setShowCreate] = useState(false);
+  const [newOrgName, setNewOrgName] = useState("");
+  const [newGroupName, setNewGroupName] = useState("");
+
   const handleSelect = (org: Organisation) => {
     localStorage.setItem('selectedOrganization', JSON.stringify({
       id: org.id,
@@ -34,7 +39,25 @@ export default function SelectOrganization({
     onSelect(org.id, org.name);
   };
 
-  // Separate standalone and grouped organisations
+  const handleCreateOrganisation = () => {
+    if (!newOrgName.trim()) return;
+
+    const newOrg: Organisation = {
+      id: "org-" + Date.now(),
+      name: newOrgName.trim(),
+      groupName: newGroupName.trim() || undefined,
+      groupId: newGroupName.trim() ? "group-" + Date.now() : undefined,
+    };
+
+    setOrganisations([...organisations, newOrg]);
+    setNewOrgName("");
+    setNewGroupName("");
+    setShowCreate(false);
+
+    // Automatically select the newly created organisation
+    handleSelect(newOrg);
+  };
+
   const standaloneOrgs = organisations.filter(org => !org.groupId);
   const groupedOrgs = organisations.filter(org => org.groupId);
 
@@ -51,10 +74,7 @@ export default function SelectOrganization({
             <Button variant="outline" onClick={onBack}>
               Back to Home
             </Button>
-            <Button 
-              onClick={() => alert("Create Organisation feature coming soon")}
-              className="bg-[#007A4D] hover:bg-[#00663f]"
-            >
+            <Button onClick={() => setShowCreate(true)} className="bg-[#007A4D] hover:bg-[#00663f]">
               + Create Organisation
             </Button>
           </div>
@@ -76,10 +96,7 @@ export default function SelectOrganization({
                       <p className="text-sm text-gray-500">Standalone</p>
                     </div>
                   </div>
-                  <Button 
-                    onClick={() => handleSelect(org)}
-                    className="w-full bg-[#006AA7] hover:bg-[#005589]"
-                  >
+                  <Button onClick={() => handleSelect(org)} className="w-full bg-[#006AA7] hover:bg-[#005589]">
                     Enter Organisation
                   </Button>
                 </div>
@@ -90,7 +107,7 @@ export default function SelectOrganization({
 
         {/* Organisations in Groups */}
         {groupedOrgs.length > 0 && (
-          <div>
+          <div className="mb-10">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">Part of a Group</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {groupedOrgs.map((org) => (
@@ -104,10 +121,7 @@ export default function SelectOrganization({
                       <p className="text-sm text-gray-500">Part of <span className="font-medium text-[#007A4D]">{org.groupName}</span></p>
                     </div>
                   </div>
-                  <Button 
-                    onClick={() => handleSelect(org)}
-                    className="w-full bg-[#006AA7] hover:bg-[#005589]"
-                  >
+                  <Button onClick={() => handleSelect(org)} className="w-full bg-[#006AA7] hover:bg-[#005589]">
                     Enter Organisation
                   </Button>
                 </div>
@@ -116,8 +130,54 @@ export default function SelectOrganization({
           </div>
         )}
 
+        {/* Create Organisation Modal */}
+        {showCreate && (
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+            <div className="bg-white rounded-2xl p-8 w-full max-w-md">
+              <h2 className="text-2xl font-bold mb-6">Create New Organisation</h2>
+              
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium mb-1.5">Organisation Name</label>
+                  <input 
+                    type="text" 
+                    value={newOrgName}
+                    onChange={(e) => setNewOrgName(e.target.value)}
+                    className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                    placeholder="e.g. Horizon Logistics"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium mb-1.5">Group Name (optional)</label>
+                  <input 
+                    type="text" 
+                    value={newGroupName}
+                    onChange={(e) => setNewGroupName(e.target.value)}
+                    className="w-full border border-gray-300 rounded-xl px-4 py-3"
+                    placeholder="e.g. Horizon Group (leave blank for standalone)"
+                  />
+                </div>
+              </div>
+
+              <div className="flex gap-3 mt-8">
+                <Button variant="outline" onClick={() => setShowCreate(false)} className="flex-1">
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={handleCreateOrganisation} 
+                  disabled={!newOrgName.trim()}
+                  className="flex-1 bg-[#007A4D] hover:bg-[#00663f]"
+                >
+                  Create & Enter
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
         <p className="text-center text-xs text-gray-400 mt-10">
-          Demo data — Ready to connect to real organisations and groups
+          Demo mode — New organisations are temporary for this session
         </p>
       </div>
     </div>
