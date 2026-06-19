@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 
-export default function SelectOrganization() {
+export default function SelectOrganization({ goToDashboard }: { goToDashboard: () => void }) {
   const handleSelect = (orgId: string, orgName: string) => {
     localStorage.setItem('selectedOrganization', JSON.stringify({ id: orgId, name: orgName }));
-    window.location.href = "/dashboard";
+    goToDashboard();
   };
 
   return (
@@ -24,8 +24,6 @@ export default function SelectOrganization() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          {/* Demo: Standalone Organisation */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-[#006AA7] transition-all">
             <h3 className="font-semibold text-lg mb-2">ACME Construction</h3>
             <p className="text-sm text-gray-500 mb-4">Standalone Organisation</p>
@@ -37,7 +35,6 @@ export default function SelectOrganization() {
             </Button>
           </div>
 
-          {/* Demo: Part of a Group */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-[#006AA7] transition-all">
             <h3 className="font-semibold text-lg mb-2">Bedrock Construction</h3>
             <p className="text-sm text-gray-500 mb-1">Part of: <span className="font-medium">GD Trade Group</span></p>
@@ -49,7 +46,6 @@ export default function SelectOrganization() {
             </Button>
           </div>
 
-          {/* Demo: Another Org in same Group */}
           <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-[#006AA7] transition-all">
             <h3 className="font-semibold text-lg mb-2">Bedrock Logistics</h3>
             <p className="text-sm text-gray-500 mb-1">Part of: <span className="font-medium">GD Trade Group</span></p>
@@ -60,7 +56,6 @@ export default function SelectOrganization() {
               Enter Organisation
             </Button>
           </div>
-
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-10">
