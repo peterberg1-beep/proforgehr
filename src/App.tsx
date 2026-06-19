@@ -20,6 +20,7 @@ const Dashboard = () => (
         </button>
       </div>
       <p className="text-gray-600 text-lg">You are now inside an organisation.</p>
+      <p className="mt-4 text-sm text-gray-500">This is a protected area.</p>
     </div>
   </div>
 );
