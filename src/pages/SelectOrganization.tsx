@@ -8,7 +8,6 @@ type Organisation = {
   groupName?: string;
 };
 
-// Initial demo data
 const initialOrgs: Organisation[] = [
   { id: "acme", name: "ACME Construction" },
   { id: "bedrock-const", name: "Bedrock Construction", groupId: "gd-trade", groupName: "GD Trade Group" },
@@ -54,7 +53,6 @@ export default function SelectOrganization({
     setNewGroupName("");
     setShowCreate(false);
 
-    // Automatically select the newly created organisation
     handleSelect(newOrg);
   };
 
@@ -67,7 +65,7 @@ export default function SelectOrganization({
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-           <h1 className="text-3xl font-bold text-red-600">Select Organisation - TEST VERSION</h1>
+            <h1 className="text-3xl font-bold text-[#0F172A]">Select Organisation</h1>
             <p className="text-gray-500 mt-1">Choose where you want to work today</p>
           </div>
           <div className="flex gap-3">
