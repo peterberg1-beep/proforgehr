@@ -3,7 +3,6 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import SelectOrganization from './pages/SelectOrganization';
 
-// Simple Dashboard with Exit button
 const Dashboard = () => (
   <div className="min-h-screen bg-gray-50 p-8">
     <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm p-10">
@@ -12,7 +11,7 @@ const Dashboard = () => (
         <button 
           onClick={() => {
             localStorage.removeItem('selectedOrganization');
-            window.location.reload(); // Refresh to go back to Select Organisation
+            window.location.reload();
           }}
           className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-medium"
         >
@@ -20,33 +19,32 @@ const Dashboard = () => (
         </button>
       </div>
       <p className="text-gray-600 text-lg">You are now inside an organisation.</p>
-      <p className="mt-4 text-sm text-gray-500">This is a protected area.</p>
     </div>
   </div>
 );
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'landing' | 'login' | 'select' | 'dashboard'>('landing');
+  const [page, setPage] = useState<'landing' | 'login' | 'select' | 'dashboard'>('landing');
 
   // Simple navigation functions
-  const goTo = (page: 'landing' | 'login' | 'select' | 'dashboard') => {
-    setCurrentPage(page);
-  };
+  const goToLogin = () => setPage('login');
+  const goToSelect = () => setPage('select');
+  const goToDashboard = () => setPage('dashboard');
+  const goToLanding = () => setPage('landing');
 
-  // Render different pages based on state
-  if (currentPage === 'landing') {
-    return <Landing goToLogin={() => goTo('login')} />;
+  if (page === 'landing') {
+    return <Landing goToLogin={goToLogin} />;
   }
 
-  if (currentPage === 'login') {
-    return <Login goToSelect={() => goTo('select')} />;
+  if (page === 'login') {
+    return <Login onLoginSuccess={goToSelect} />;
   }
 
-  if (currentPage === 'select') {
-    return <SelectOrganization goToDashboard={() => goTo('dashboard')} />;
+  if (page === 'select') {
+    return <SelectOrganization onSelect={goToDashboard} onBack={goToLanding} />;
   }
 
-  if (currentPage === 'dashboard') {
+  if (page === 'dashboard') {
     return <Dashboard />;
   }
 
