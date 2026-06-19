@@ -15,7 +15,7 @@ const initialOrgs: Organisation[] = [
   { id: "bedrock-log", name: "Bedrock Logistics", groupId: "gd-trade", groupName: "GD Trade Group" },
   { id: "sunrise", name: "Sunrise Mining" },
 ];
-
+// test
 export default function SelectOrganization({ 
   onSelect, 
   onBack 
