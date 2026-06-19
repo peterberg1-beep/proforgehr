@@ -1,34 +1,60 @@
 import React, { useState } from 'react';
 
-// Simple Landing Page
+// Improved Landing Page
 const Landing = ({ onSignIn }: { onSignIn: () => void }) => (
-  <div className="min-h-screen bg-[#F8FAFC] flex flex-col">
-    <div className="bg-white border-b px-6 py-4 flex justify-between items-center">
-      <div className="flex items-center gap-3">
-        <span className="text-2xl font-bold text-[#006AA7]">ProForgeHR</span>
-      </div>
-      <button 
-        onClick={onSignIn}
-        className="bg-[#006AA7] hover:bg-[#005589] text-white px-6 py-2 rounded-xl font-medium"
-      >
-        Sign In
-      </button>
-    </div>
-
-    <div className="flex-1 flex items-center justify-center p-8">
-      <div className="max-w-2xl text-center">
-        <h1 className="text-5xl font-bold text-[#0F172A] mb-6">
-          Enterprise HR.<br />Simple. Secure. Powerful.
-        </h1>
-        <p className="text-xl text-gray-600 mb-10">
-          People • Process • Performance
-        </p>
+  <div className="min-h-screen bg-white flex flex-col">
+    {/* Top Navigation */}
+    <nav className="border-b border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl font-bold text-[#006AA7]">ProForgeHR</span>
+        </div>
         <button 
           onClick={onSignIn}
-          className="bg-[#006AA7] hover:bg-[#005589] text-white px-10 py-4 rounded-2xl text-xl font-semibold"
+          className="bg-[#006AA7] hover:bg-[#005589] text-white px-6 py-2.5 rounded-xl font-medium transition-colors"
+        >
+          Sign In
+        </button>
+      </div>
+    </nav>
+
+    {/* Hero Section */}
+    <div className="flex-1 flex items-center justify-center px-6 py-16">
+      <div className="max-w-4xl text-center">
+        <h1 className="text-6xl md:text-7xl font-bold text-[#0F172A] leading-tight tracking-tight mb-6">
+          Enterprise HR.<br />
+          <span className="text-[#006AA7]">Simple. Secure. Powerful.</span>
+        </h1>
+        
+        <p className="text-2xl text-gray-600 mb-4">
+          Built for businesses that demand precision, compliance, and clarity.
+        </p>
+        
+        <div className="flex items-center justify-center gap-3 text-lg text-gray-500 mb-10">
+          <span>People</span>
+          <span className="text-gray-300">•</span>
+          <span>Process</span>
+          <span className="text-gray-300">•</span>
+          <span>Performance</span>
+        </div>
+
+        <button 
+          onClick={onSignIn}
+          className="bg-[#006AA7] hover:bg-[#005589] text-white text-xl font-semibold px-10 py-4 rounded-2xl transition-all active:scale-[0.985]"
         >
           Get Started – Sign In
         </button>
+
+        <p className="mt-6 text-sm text-gray-400">
+          Trusted by growing South African businesses
+        </p>
+      </div>
+    </div>
+
+    {/* Bottom Bar */}
+    <div className="border-t border-gray-100 py-4">
+      <div className="max-w-7xl mx-auto px-6 text-center text-sm text-gray-400">
+        © 2026 ProForgeHR • GD Trade Group • Durban, South Africa
       </div>
     </div>
   </div>
