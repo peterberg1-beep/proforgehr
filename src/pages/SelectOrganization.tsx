@@ -9,7 +9,7 @@ type Organisation = {
 };
 
 // Initial demo data
-const initialOrgs: Organisation[] = [
+const // testinitialOrgs: Organisation[] = [
   { id: "acme", name: "ACME Construction" },
   { id: "bedrock-const", name: "Bedrock Construction", groupId: "gd-trade", groupName: "GD Trade Group" },
   { id: "bedrock-log", name: "Bedrock Logistics", groupId: "gd-trade", groupName: "GD Trade Group" },
